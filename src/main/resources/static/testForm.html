@@ -1,22 +1,20 @@
 <!doctype html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>AngularJS Simple Calculator</title>
-    <script src="//code.angularjs.org/snapshot/angular.min.js"></script>
+    <title>Simple Calculator</title>
 </head>
 
 
 <body ng-app="sharp">
 
 <div>
-    Run 18
+    Run 3
 </div>
 
 <div class="container">
     <h1>Simple Calculator</h1>
     <div ng-controller="ExampleController">
-        <form novalidate  class="simple-form" id="formExample">
+        <form novalidate  class="simple-form">
             <label>Param A: <input name="paramA" id="paramA" type="number" ng-model="user.paramA" /></label><br/>
             Operation:
             <select name="oper" id="oper" >
@@ -35,10 +33,8 @@
     </div>
 
     <script>
-        console.log("X-1")
-        angular.module('sharp', [])
+        angular.module('formExample', [])
             .controller('ExampleController', ['$scope', function($scope) {
-                console.log("X-2")
                 $scope.master = {};
 
                 $scope.update = function(user) {
@@ -50,27 +46,10 @@
                 };
 
                 $scope.reset();
-                console.log("X-3")
             }]);
-        console.log("X-4")
     </script>
 
-    <div ng-controller="calcHistory" ng-cloak class="ng-cloak">
-        <p>The history is {{hist.history}}</p>
-    </div>
 </div>
 
-
-<!--<script src="js/angular-bootstrap.js" type="text/javascript"></script>-->
-<script src="calculator.js"></script>
-
-<script>
-    console.log("H-1")
-    $http.get('/calculator/history').success(function(data) {
-        console.log("H-2")
-        console.log(data)
-        console.log("H-3")
-    })
-</script>
 </body>
 </html>
