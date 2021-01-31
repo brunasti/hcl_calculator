@@ -126,7 +126,7 @@ For example in case the user requires a division by 0, a CalculatorArithmeticExc
 
 ### Check the DB content
 
-To check what have been stored in the DB I create an extra endpoint /weather_all which returns all the records found in the DB
+To check what have been stored in the DB I create an extra endpoint which returns all the records found in the DB
 
 Calling the URL
 
