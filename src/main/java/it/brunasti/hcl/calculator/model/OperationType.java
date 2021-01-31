@@ -6,10 +6,10 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum OperationType {
 
-    ADD ("plus"),
-    SUB ("minus"),
-    MULTIPLY ("times"),
-    DIVISION ("obelus");
+    ADD ("add"),
+    SUB ("subtract"),
+    MULTIPLY ("multiply"),
+    DIVIDE ("divide");
 
     @Getter
     private final String code;
