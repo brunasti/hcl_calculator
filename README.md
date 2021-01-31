@@ -24,8 +24,8 @@ Create a "SimpleCalculator"  Java class that will have the following operations:
 
 ### 1.2. Guidelines
 
-- Use Test Driven Development to build the "SimpleCalculator" RESTful API
-- Use Spring (Boot) for the RESTful API
+- Use Test Driven Development to build the "SimpleCalculator" RESTful API - OK
+- Use Spring (Boot) for the RESTful API - OK
 - Use the Maven build automation tool - OK
 - Use Java 11 and coding standards (only JavaDoc for most important parts) - OK
 - Use JUnit and Mocking where needed - OK
