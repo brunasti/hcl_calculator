@@ -1,12 +1,18 @@
 package it.brunasti.hcl.calculator;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import it.brunasti.hcl.calculator.logic.SimpleCalculator;
+import it.brunasti.hcl.calculator.repository.ResultRepository;
 import it.brunasti.hcl.calculator.rest.response.OperationResponse;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -17,10 +23,20 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 class CalculatorApplicationTests {
 
+
 	ObjectMapper om = new ObjectMapper();
 
 	@Autowired
 	MockMvc mockMvc;
+
+	@Autowired
+	ResultRepository resultRepository;
+
+	@BeforeEach
+	public void setup() {
+		resultRepository.deleteAll();
+	}
+
 
 
 	@Test
@@ -177,5 +193,49 @@ class CalculatorApplicationTests {
 				.andDo(print())
 				.andExpect(status().isNotFound());
 	}
+
+
+
+
+	@Test
+	public void testHistory() throws Exception {
+		OperationResponse operationResponse;
+
+		mockMvc.perform(get("/calculator/add?a=1&b=2"));
+		mockMvc.perform(get("/calculator/add?a=1&b=-1"));
+		mockMvc.perform(get("/calculator/subtract?a=1&b=2"));
+		mockMvc.perform(get("/calculator/subtract?a=1&b=-1"));
+		mockMvc.perform(get("/calculator/multiply?a=1&b=2"));
+		mockMvc.perform(get("/calculator/divide?a=1&b=2"));
+
+		List<OperationResponse> list = om.readValue(
+				mockMvc.perform(get("/calculator/history")
+				)
+						.andDo(print()).andExpect(status().isOk()).andReturn().getResponse().getContentAsString(), ArrayList.class);
+		assertNotNull(list);
+		assertEquals(6, list.size());
+
+		mockMvc.perform(get("/calculator/divide?a=0&b=123"));
+		mockMvc.perform(get("/calculator/divide?a=1&b=1"));
+		mockMvc.perform(get("/calculator/divide?a=12&b=4"));
+
+		list = om.readValue(
+				mockMvc.perform(get("/calculator/history")
+				)
+						.andDo(print()).andExpect(status().isOk()).andReturn().getResponse().getContentAsString(), ArrayList.class);
+		assertNotNull(list);
+		assertEquals(9, list.size());
+
+		mockMvc.perform(get("/calculator/divide?a=12&b=0"));
+
+		list = om.readValue(
+				mockMvc.perform(get("/calculator/history")
+				)
+						.andDo(print()).andExpect(status().isOk()).andReturn().getResponse().getContentAsString(), ArrayList.class);
+		assertNotNull(list);
+		assertEquals(10, list.size());
+
+	}
+
 
 }

@@ -111,14 +111,8 @@ we can start logging what the app is doing
 
 The result of a full test coverage run provides a very good value:
 
-- 87% of classes touched by tests
-- 85% of the code lines covered
-
-The missing classes are mainly the standard Spring boilerplate generated or just defined as interfaces: 
-
-- CalculatorApplication 
-- ServletInitialized
-- ResultRepository
+- 100% of classes touched by tests
+- 97% of the code lines covered
 
 Most of the missing code lines / functions are the one created via Lombok, which should not be tested by definition.
 
