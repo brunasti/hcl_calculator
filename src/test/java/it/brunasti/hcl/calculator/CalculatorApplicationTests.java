@@ -139,7 +139,7 @@ class CalculatorApplicationTests {
 		)
 				.andDo(print()).andExpect(status().isOk()).andReturn().getResponse().getContentAsString(), OperationResponse.class);
 		assertNotNull(operationResponse);
-		assertEquals(0.5, operationResponse.getResult());
+		assertEquals(0, operationResponse.getResult());
 
 		operationResponse = om.readValue(
 				mockMvc.perform(get("/calculator/divide?a=0&b=123")
