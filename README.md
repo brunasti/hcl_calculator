@@ -26,11 +26,11 @@ Create a "SimpleCalculator"  Java class that will have the following operations:
 
 - Use Test Driven Development to build the "SimpleCalculator" RESTful API
 - Use Spring (Boot) for the RESTful API
-- Use the Maven build automation tool
-- Use Java 11 and coding standards (only JavaDoc for most important parts)
-- Use JUnit and Mocking where needed
+- Use the Maven build automation tool - OK
+- Use Java 11 and coding standards (only JavaDoc for most important parts) - OK
+- Use JUnit and Mocking where needed - OK
 - Use npm and Angular for the frontend.
-- Use git for version control
+- Use git for version control - OK
 - Use H2 for database
 - Take your time into account. Use 2 dayparts for this assignment and use them to the fullest extent. Try to make the calculator as complete as possible demonstrating that you are familiar with the techniques above, but don’t overcomplicate.
 
