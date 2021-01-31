@@ -63,6 +63,115 @@ class CalculatorApplicationTests {
 
 
 	@Test
+	public void testSubtract() throws Exception {
+		OperationResponse operationResponse;
+
+		operationResponse = om.readValue(
+				mockMvc.perform(get("/calculator/subtract?a=1&b=2")
+		)
+				.andDo(print()).andExpect(status().isOk()).andReturn().getResponse().getContentAsString(), OperationResponse.class);
+		assertNotNull(operationResponse);
+		assertEquals(-1, operationResponse.getResult());
+
+		operationResponse = om.readValue(
+				mockMvc.perform(get("/calculator/subtract?a=123&b=0")
+				)
+						.andDo(print()).andExpect(status().isOk()).andReturn().getResponse().getContentAsString(), OperationResponse.class);
+		assertNotNull(operationResponse);
+		assertEquals(123, operationResponse.getResult());
+
+		operationResponse = om.readValue(
+				mockMvc.perform(get("/calculator/subtract?a=0&b=0")
+				)
+						.andDo(print()).andExpect(status().isOk()).andReturn().getResponse().getContentAsString(), OperationResponse.class);
+		assertNotNull(operationResponse);
+		assertEquals(0, operationResponse.getResult());
+
+		operationResponse = om.readValue(
+				mockMvc.perform(get("/calculator/subtract?a=1&b=-1")
+				)
+						.andDo(print()).andExpect(status().isOk()).andReturn().getResponse().getContentAsString(), OperationResponse.class);
+		assertNotNull(operationResponse);
+		assertEquals(2, operationResponse.getResult());
+	}
+
+
+	@Test
+	public void testMultiply() throws Exception {
+		OperationResponse operationResponse;
+
+		operationResponse = om.readValue(
+				mockMvc.perform(get("/calculator/multiply?a=1&b=2")
+		)
+				.andDo(print()).andExpect(status().isOk()).andReturn().getResponse().getContentAsString(), OperationResponse.class);
+		assertNotNull(operationResponse);
+		assertEquals(2, operationResponse.getResult());
+
+		operationResponse = om.readValue(
+				mockMvc.perform(get("/calculator/multiply?a=123&b=0")
+				)
+						.andDo(print()).andExpect(status().isOk()).andReturn().getResponse().getContentAsString(), OperationResponse.class);
+		assertNotNull(operationResponse);
+		assertEquals(0, operationResponse.getResult());
+
+		operationResponse = om.readValue(
+				mockMvc.perform(get("/calculator/multiply?a=0&b=0")
+				)
+						.andDo(print()).andExpect(status().isOk()).andReturn().getResponse().getContentAsString(), OperationResponse.class);
+		assertNotNull(operationResponse);
+		assertEquals(0, operationResponse.getResult());
+
+		operationResponse = om.readValue(
+				mockMvc.perform(get("/calculator/multiply?a=1&b=-1")
+				)
+						.andDo(print()).andExpect(status().isOk()).andReturn().getResponse().getContentAsString(), OperationResponse.class);
+		assertNotNull(operationResponse);
+		assertEquals(-1, operationResponse.getResult());
+	}
+
+
+	@Test
+	public void testDivide() throws Exception {
+		OperationResponse operationResponse;
+
+		operationResponse = om.readValue(
+				mockMvc.perform(get("/calculator/divide?a=1&b=2")
+		)
+				.andDo(print()).andExpect(status().isOk()).andReturn().getResponse().getContentAsString(), OperationResponse.class);
+		assertNotNull(operationResponse);
+		assertEquals(0.5, operationResponse.getResult());
+
+		operationResponse = om.readValue(
+				mockMvc.perform(get("/calculator/divide?a=0&b=123")
+				)
+						.andDo(print()).andExpect(status().isOk()).andReturn().getResponse().getContentAsString(), OperationResponse.class);
+		assertNotNull(operationResponse);
+		assertEquals(0, operationResponse.getResult());
+
+		operationResponse = om.readValue(
+				mockMvc.perform(get("/calculator/divide?a=1&b=1")
+				)
+						.andDo(print()).andExpect(status().isOk()).andReturn().getResponse().getContentAsString(), OperationResponse.class);
+		assertNotNull(operationResponse);
+		assertEquals(1, operationResponse.getResult());
+
+		operationResponse = om.readValue(
+				mockMvc.perform(get("/calculator/divide?a=12&b=4")
+				)
+						.andDo(print()).andExpect(status().isOk()).andReturn().getResponse().getContentAsString(), OperationResponse.class);
+		assertNotNull(operationResponse);
+		assertEquals(3, operationResponse.getResult());
+
+		operationResponse = om.readValue(
+				mockMvc.perform(get("/calculator/divide?a=1&b=-1")
+				)
+						.andDo(print()).andExpect(status().isOk()).andReturn().getResponse().getContentAsString(), OperationResponse.class);
+		assertNotNull(operationResponse);
+		assertEquals(-1, operationResponse.getResult());
+	}
+
+
+	@Test
 	public void testCallGetMatchError() throws Exception {
 		mockMvc.perform(get("/calculator/sqrt"))
 				.andDo(print())
