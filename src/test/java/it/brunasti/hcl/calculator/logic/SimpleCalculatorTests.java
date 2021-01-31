@@ -18,6 +18,17 @@ public class SimpleCalculatorTests {
     }
 
     @Test
+    public void add_double() {
+        SimpleCalculator simpleCalculator = new SimpleCalculator();
+
+        assertEquals(0d, simpleCalculator.add(0d,0d));
+        assertEquals(1d, simpleCalculator.add(0d,1d));
+        assertEquals(1d, simpleCalculator.add(1d,0d));
+        assertEquals(2d, simpleCalculator.add(1d,1d));
+        assertEquals(0d, simpleCalculator.add(1d,-1d));
+    }
+
+    @Test
     public void subtract() {
         SimpleCalculator simpleCalculator = new SimpleCalculator();
 
