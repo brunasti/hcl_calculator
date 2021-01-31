@@ -3,9 +3,11 @@ package it.brunasti.hcl.calculator.logic;
 import it.brunasti.hcl.calculator.model.OperationRecord;
 import it.brunasti.hcl.calculator.model.OperationType;
 import it.brunasti.hcl.calculator.repository.ResultRepository;
-import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 @RequiredArgsConstructor
@@ -70,5 +72,14 @@ public class CalculatorWithMemory {
         return result;
     }
 
+    /**
+     * Retrieve all the history records from the DB
+     * @return the list of operation records
+     */
+    public List<OperationRecord> getHistory() {
+        List<OperationRecord> list = new ArrayList<>();
+        repository.findAll().forEach(operationRecord -> {list.add(operationRecord);});
+        return list;
+    }
 
 }

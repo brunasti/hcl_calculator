@@ -1,5 +1,6 @@
 package it.brunasti.hcl.calculator.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,6 +12,7 @@ import javax.persistence.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class OperationRecord {
 
     public OperationRecord(OperationType operationType, double a, double b, double result) {

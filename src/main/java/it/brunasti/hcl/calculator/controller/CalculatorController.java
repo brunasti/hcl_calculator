@@ -2,11 +2,14 @@ package it.brunasti.hcl.calculator.controller;
 
 import it.brunasti.hcl.calculator.logic.CalculatorWithMemory;
 import it.brunasti.hcl.calculator.logic.SimpleCalculator;
+import it.brunasti.hcl.calculator.model.OperationRecord;
 import it.brunasti.hcl.calculator.rest.response.OperationResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @Slf4j
@@ -15,10 +18,6 @@ import org.springframework.web.bind.annotation.*;
 public class CalculatorController {
 
     private final CalculatorWithMemory calculator;
-
-//    CalculatorController(SimpleCalculator simpleCalculator) {
-//        this.simpleCalculator = simpleCalculator;
-//    }
 
     @GetMapping("/add")
     @ResponseStatus(HttpStatus.OK)
@@ -46,6 +45,14 @@ public class CalculatorController {
     public OperationResponse divide(@RequestParam int a, @RequestParam int b) {
         log.info("divide [{}] [{}]", a, b);
         return new OperationResponse(calculator.divide(a,b));
+    }
+
+
+    @GetMapping("/history")
+    @ResponseStatus(HttpStatus.OK)
+    public List<OperationRecord> history() {
+        log.info("history");
+        return calculator.getHistory();
     }
 
 
