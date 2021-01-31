@@ -31,7 +31,7 @@ Create a "SimpleCalculator"  Java class that will have the following operations:
 - Use JUnit and Mocking where needed - OK
 - Use npm and Angular for the frontend.
 - Use git for version control - OK
-- Use H2 for database
+- Use H2 for database - OK
 - Take your time into account. Use 2 dayparts for this assignment and use them to the fullest extent. Try to make the calculator as complete as possible demonstrating that you are familiar with the techniques above, but don’t overcomplicate.
 
 

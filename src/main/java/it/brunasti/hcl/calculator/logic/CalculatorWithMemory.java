@@ -66,10 +66,17 @@ public class CalculatorWithMemory {
      */
     public double divide(int a, int b) throws ArithmeticException{
         // TODO Handle exception and store erro in DB
-        double result = simpleCalculator.divide(a,b);
-        OperationRecord operationRecord = new OperationRecord(OperationType.DIVIDE,a,b,result);
-        repository.save(operationRecord);
-        return result;
+        try {
+            double result = simpleCalculator.divide(a, b);
+            OperationRecord operationRecord = new OperationRecord(OperationType.DIVIDE, a, b, result);
+            repository.save(operationRecord);
+            return result;
+        } catch (ArithmeticException arithmeticException) {
+            OperationRecord operationRecord = new OperationRecord(OperationType.DIVIDE, a, b, 0);
+            operationRecord.setError(arithmeticException.getMessage());
+            repository.save(operationRecord);
+            throw arithmeticException;
+        }
     }
 
     /**
