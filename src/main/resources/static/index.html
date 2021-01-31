@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-    <title>Hello AngularJS</title>
+    <title>AngularJS Simple Calculator</title>
     <link href="css/angular-bootstrap.css" rel="stylesheet">
     <style type="text/css">
         [ng\:cloak], [ng-cloak], .ng-cloak {
@@ -10,15 +10,24 @@
     </style>
 </head>
 
-<body ng-app="hello">
+
+<body ng-app="sharp">
+
+<div>
+    Run 8
+</div>
+
 <div class="container">
-    <h1>Greeting</h1>
+    <h1>Simple Calculator</h1>
     <div ng-controller="home" ng-cloak class="ng-cloak">
-        <p>The ID is {{greeting.id}}</p>
-        <p>The content is {{greeting.content}}</p>
+        <p>The ID is {{hist.id}}</p>
+        <p>The content is {{hist.content}}</p>
+        <p>The history is {{hist.history}}</p>
     </div>
 </div>
+
+
 <script src="js/angular-bootstrap.js" type="text/javascript"></script>
-<script src="js/hello.js"></script>
+<script src="js/calculator.js"></script>
 </body>
 </html>
