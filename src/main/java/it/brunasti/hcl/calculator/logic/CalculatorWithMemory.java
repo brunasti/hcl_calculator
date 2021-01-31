@@ -4,12 +4,14 @@ import it.brunasti.hcl.calculator.model.OperationRecord;
 import it.brunasti.hcl.calculator.model.OperationType;
 import it.brunasti.hcl.calculator.repository.ResultRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Component
+@Slf4j
 @RequiredArgsConstructor
 public class CalculatorWithMemory {
 
@@ -72,6 +74,7 @@ public class CalculatorWithMemory {
             repository.save(operationRecord);
             return result;
         } catch (ArithmeticException arithmeticException) {
+            log.error("Exception in divide ["+a+"] / ["+b+"]",arithmeticException);
             OperationRecord operationRecord = new OperationRecord(OperationType.DIVIDE, a, b, 0);
             operationRecord.setError(arithmeticException.getMessage());
             repository.save(operationRecord);
