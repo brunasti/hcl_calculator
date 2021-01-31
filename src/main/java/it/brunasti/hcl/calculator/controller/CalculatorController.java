@@ -24,5 +24,26 @@ public class CalculatorController {
         return new OperationResponse(simpleCalculator.add(a,b));
     }
 
+    @GetMapping("/subtract")
+    @ResponseStatus(HttpStatus.OK)
+    public OperationResponse subtract(@RequestParam int a, @RequestParam int b) {
+        log.info("subtract [{}] [{}]", a, b);
+        return new OperationResponse(simpleCalculator.subtract(a,b));
+    }
+
+    @GetMapping("/multiply")
+    @ResponseStatus(HttpStatus.OK)
+    public OperationResponse multiply(@RequestParam int a, @RequestParam int b) {
+        log.info("multiply [{}] [{}]", a, b);
+        return new OperationResponse(simpleCalculator.multiply(a,b));
+    }
+
+    @GetMapping("/divide")
+    @ResponseStatus(HttpStatus.OK)
+    public OperationResponse divide(@RequestParam int a, @RequestParam int b) {
+        log.info("divide [{}] [{}]", a, b);
+        return new OperationResponse(simpleCalculator.divide(a,b));
+    }
+
 
 }
