@@ -89,10 +89,10 @@ I create under it.brunasti.hcl.calculator a standard directories structure for t
     - model
     - repository
 
-I even create an extra directory for the REST API resources and for the logic/algorithm classes
+I even create extra directories for the REST API resources (in our simple case only responses), and for the logic/algorithm classes
 
-    - logic
     - rest.responses
+    - logic
 
 I check that all is building correctly with the command:
 
@@ -134,7 +134,7 @@ Calling the URL
 
 you can see all the operation that have been executed on the server.
 
-Hera an example of the output:
+Here is an example of the output:
 
     [ 
         {
