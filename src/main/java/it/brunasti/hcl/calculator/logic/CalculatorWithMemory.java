@@ -1,5 +1,6 @@
 package it.brunasti.hcl.calculator.logic;
 
+import it.brunasti.hcl.calculator.exception.CalculatorArithmeticException;
 import it.brunasti.hcl.calculator.model.OperationRecord;
 import it.brunasti.hcl.calculator.model.OperationType;
 import it.brunasti.hcl.calculator.repository.ResultRepository;
@@ -78,7 +79,7 @@ public class CalculatorWithMemory {
             OperationRecord operationRecord = new OperationRecord(OperationType.DIVIDE, a, b, 0);
             operationRecord.setError(arithmeticException.getMessage());
             repository.save(operationRecord);
-            throw arithmeticException;
+            throw new CalculatorArithmeticException(a+"/"+b);
         }
     }
 

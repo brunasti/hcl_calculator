@@ -1,13 +1,12 @@
 package it.brunasti.hcl.calculator.logic;
 
+import it.brunasti.hcl.calculator.exception.CalculatorArithmeticException;
 import it.brunasti.hcl.calculator.repository.ResultRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -78,11 +77,11 @@ public class CalculatorWithMemoryTest {
 
         assertEquals(5, calculator.getHistory().size());
 
-        assertThrows(ArithmeticException.class, () -> {
+        assertThrows(CalculatorArithmeticException.class, () -> {
             assertEquals(0, calculator.divide(0,0));
         });
 
-        assertThrows(ArithmeticException.class, () -> {
+        assertThrows(CalculatorArithmeticException.class, () -> {
             assertEquals(0, calculator.divide(1,0));
         });
 
