@@ -1,7 +1,6 @@
 package it.brunasti.hcl.calculator.controller;
 
 import it.brunasti.hcl.calculator.logic.CalculatorWithMemory;
-import it.brunasti.hcl.calculator.logic.SimpleCalculator;
 import it.brunasti.hcl.calculator.model.OperationRecord;
 import it.brunasti.hcl.calculator.rest.response.OperationResponse;
 import lombok.RequiredArgsConstructor;
