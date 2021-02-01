@@ -1,0 +1,69 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+
+class SimpleCalculator {
+add(a,b)
+subtract(a,b)
+multiply(a,b)
+divide(a,b)
+}
+
+
+class CalculatorWithMemory {
+add(a,b)
+subtract(a,b)
+multiply(a,b)
+divide(a,b)
+getHistory()
+}
+
+class CalculatorController {
+GET /calculator/add?a=<>&b=<>
+GET /calculator/subtract?a=<>&b=<>
+GET /calculator/multiply?a=<>&b=<>
+GET /calculator/divide?a=<>&b=<>
+GET /calculator/history
+}
+
+class OperationResponse {
+    double result
+}
+
+interface ResultRepository {
+}
+
+class OperationRecord {
+    private Integer id
+    private String operationType
+    private double paramA
+    private double paramB
+    private double result
+    private String error
+}
+
+enum OperationType {
+    ADD
+    SUB
+    MULTIPLY
+    DIVIDE
+}
+
+entity CalculatorArithmeticException {
+}
+
+CalculatorController -d-> CalculatorWithMemory
+CalculatorWithMemory -> SimpleCalculator
+CalculatorWithMemory -d-> ResultRepository
+CalculatorWithMemory -d-> CalculatorArithmeticException
+
+
+ResultRepository o- OperationRecord
+CalculatorWithMemory -> OperationRecord
+CalculatorWithMemory -> OperationType
+
+OperationRecord -r-> OperationType
+
+CalculatorController -> OperationResponse
+
+@enduml

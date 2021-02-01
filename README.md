@@ -61,11 +61,13 @@ The project(s) containing the code, build instructions and tests. Preferably pos
 The SimpleCalculator is "simple", but it somehow constitutes the core algorithm of the system.
 I decided to separate as much as possible the different functionalities, creating a layer of colasses:
 
-- SimpleCalculator : the core logical and "business logic" of the system
+- CalculatorController : the mapping between the APIs external definition and the internal implementation of the logic
 - CalculatorWithMemory : built on top of the SimpleCalculator it adds the storage in the DB of the results
-- CalculatorController : the mapping between the APIs external definition and the internal implementation of the logic 
+- SimpleCalculator : the core logical and "business logic" of the system
 
 The CalculatorController is the component which will be invoked by the Angular user interface to perform the required operations.
+
+![img.png](docs/img.png)
 
 I could have designed the API definitions and resources using an OpenAPI YAML file, 
 and generate from that the needed resources classes, 
