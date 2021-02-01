@@ -1,39 +1,55 @@
+var calculatorApp = angular.module('calculatorApp',[]);
+
+
+calculatorApp.service('dataService', function($http) {
+    // delete $http.defaults.headers.common['X-Requested-With'];
+    this.getData = function(n1, n2, operation) {
+        console.log("GET "+n1+", "+n2+ ", "+operation)
+        $http({
+            method: 'GET',
+            url: '/calculator/'+operation,
+            params: 'a='+n1+' b='+n2
+        }).success(function(data){
+            console.log("DATA : "+data)
+            return data
+        }).error(function(){
+            alert("error");
+        });
+    }
+});
+
+calculatorApp.controller('AngularJSCtrl', function($scope, dataService) {
+    $scope.data = dataService.getData();
+});
+
 const calculate = (n1, operator, n2) => {
     const firstNum = parseFloat(n1)
     const secondNum = parseFloat(n2)
-    // if (operator === 'add') return firstNum + secondNum
     if (operator === 'add') return add(firstNum, secondNum)
     if (operator === 'subtract') return firstNum - secondNum
     if (operator === 'multiply') return firstNum * secondNum
     if (operator === 'divide') return firstNum / secondNum
 }
 
+var result = -1
 
 const add = (n1, n2) => {
     console.log("ADD "+n1+" and "+n2)
-    // $http.get('/calculator/add?a='+n1+'b='+n2).success(function(data) {
-    //     console.log(data)
-    //     $scope.hist = {history: data}
-    //     console.log("H-3")
-    // })
+    // console.log("calculatorApp "+calculatorApp)
 
-    // angular.module('sharp', [])
-    //     .controller('calcHistory', function($scope, $http) {
-    //         console.log("H-1")
-    //         // $http.get('/calculator/history').success(function(data) {
-    //         //     console.log("H-2")
-    //         //     console.log(data)
-    //         //     $scope.hist = {history: data}
-    //         //     console.log("H-3")
-    //         // })
-    //         $http.get('/calculator/add?a='+n1+'b='+n2).success(function(data) {
-    //             console.log(data)
-    //             $scope.hist = {history: data}
-    //             console.log("H-3")
-    //         })
-    //     })
+    request = new XMLHttpRequest();
+    request.open('GET', '/calculator/add?a='+n1+'&b='+n2, false);  // `false` makes the request synchronous
+    request.send(null);
 
-    return n1 + n2
+    if (request.status === 200) {
+        console.log(request.responseText);
+        obj = JSON.parse(request.responseText);
+        console.log(obj);
+        console.log(obj.result);
+        result = obj.result
+    }
+
+    return result
 }
 
 

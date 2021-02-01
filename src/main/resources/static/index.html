@@ -6,12 +6,12 @@
         <link rel="stylesheet" href="calculator.css">
         <script src="//code.angularjs.org/snapshot/angular.min.js"></script>
     </head>
-    <body ng-app="sharp">
+    <body >
 
     <div class="container">
-        <h1>Simple Calculator</h1>
+        <h3>Simple Calculator</h3>
 
-            <div class="calculator">
+            <div class="calculator" ng-app="calculatorApp" ng-controller="calcCtrl">
                 <div class="calculator__display">0</div>
 
                 <div class="calculator__keys">
@@ -34,6 +34,8 @@
                     <button class="key--equal" data-action="calculate">=</button>
                 </div>
             </div>
+            <h6>Paolo Brunasti - 2021</h6>
+
         </div>
         <!-- partial -->
         <script  src="./calculator.js"></script>
