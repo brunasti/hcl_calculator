@@ -28,31 +28,6 @@ const operation = (n1, n2, operation) => {
     return result
 }
 
-// const add = (n1, n2) => {
-//     console.log("ADD "+n1+" and "+n2)
-//     // // console.log("calculatorApp "+calculatorApp)
-//     //
-//     // request = new XMLHttpRequest();
-//     // request.open('GET', '/calculator/add?a='+n1+'&b='+n2, false);  // `false` makes the request synchronous
-//     // request.send(null);
-//     //
-//     // if (request.status === 200) {
-//     //     console.log(request.responseText);
-//     //     obj = JSON.parse(request.responseText);
-//     //     console.log(obj);
-//     //     console.log(obj.result);
-//     //     result = obj.result
-//     // }
-//     //
-//     return operation(n1,n2,'add')
-// }
-//
-// const subtract = (n1, n2) => {
-//     return operation(n1,n2,'subtract')
-// }
-//
-
-
 const getKeyType = key => {
     const { action } = key.dataset
     if (!action) return 'number'
@@ -67,19 +42,14 @@ const getKeyType = key => {
 }
 
 const createResultString = (key, displayedNum, state) => {
-    console.log("key "+key)
     const keyContent = key.textContent
-    console.log("keyContent "+keyContent)
     const keyType = getKeyType(key)
-    console.log("keyType "+keyType)
     const {
         firstValue,
         operator,
         modValue,
         previousKeyType
     } = state
-
-    console.log("  - X1")
 
     if (keyType === 'number') {
         return displayedNum === '0' ||
@@ -89,15 +59,11 @@ const createResultString = (key, displayedNum, state) => {
             : displayedNum + keyContent
     }
 
-    console.log("  - X2")
-
     if (keyType === 'decimal') {
         if (!displayedNum.includes('.')) return displayedNum + '.'
         if (previousKeyType === 'operator' || previousKeyType === 'calculate') return '0.'
         return displayedNum
     }
-
-    console.log("  - X3")
 
     if (keyType === 'operator') {
         return firstValue &&
@@ -108,11 +74,7 @@ const createResultString = (key, displayedNum, state) => {
             : displayedNum
     }
 
-    console.log("  - X4")
-
     if (keyType === 'clear') return 0
-
-    console.log("  - X5")
 
     if (keyType === 'calculate') {
         return firstValue
@@ -122,12 +84,8 @@ const createResultString = (key, displayedNum, state) => {
             : displayedNum
     }
 
-    console.log("  - X9")
-
     if (keyType === 'history') {
-        console.log("HISTORY.....")
         getHistory()
-        console.log("HISTORY GOT !")
         return displayedNum
     }
 }
