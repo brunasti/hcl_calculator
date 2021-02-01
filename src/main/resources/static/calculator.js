@@ -1,11 +1,42 @@
 const calculate = (n1, operator, n2) => {
     const firstNum = parseFloat(n1)
     const secondNum = parseFloat(n2)
-    if (operator === 'add') return firstNum + secondNum
+    // if (operator === 'add') return firstNum + secondNum
+    if (operator === 'add') return add(firstNum, secondNum)
     if (operator === 'subtract') return firstNum - secondNum
     if (operator === 'multiply') return firstNum * secondNum
     if (operator === 'divide') return firstNum / secondNum
 }
+
+
+const add = (n1, n2) => {
+    console.log("ADD "+n1+" and "+n2)
+    // $http.get('/calculator/add?a='+n1+'b='+n2).success(function(data) {
+    //     console.log(data)
+    //     $scope.hist = {history: data}
+    //     console.log("H-3")
+    // })
+
+    // angular.module('sharp', [])
+    //     .controller('calcHistory', function($scope, $http) {
+    //         console.log("H-1")
+    //         // $http.get('/calculator/history').success(function(data) {
+    //         //     console.log("H-2")
+    //         //     console.log(data)
+    //         //     $scope.hist = {history: data}
+    //         //     console.log("H-3")
+    //         // })
+    //         $http.get('/calculator/add?a='+n1+'b='+n2).success(function(data) {
+    //             console.log(data)
+    //             $scope.hist = {history: data}
+    //             console.log("H-3")
+    //         })
+    //     })
+
+    return n1 + n2
+}
+
+
 
 const getKeyType = key => {
     const { action } = key.dataset
