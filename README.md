@@ -158,6 +158,14 @@ Here is an example of the output:
 
 
 
-## Angular FrontEnd application
+## FrontEnd application
 
-- not fully implemented
+To see the web interface start the CalculatorApplication and then browse the page
+
+    http://localhost:8080/
+
+This is what you should see:
+
+![gui.png](docs/SimpleCalculator-GUI.png)
+
+Have fun :) !
