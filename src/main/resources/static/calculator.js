@@ -1,44 +1,20 @@
-var calculatorApp = angular.module('calculatorApp',[]);
-
-
-calculatorApp.service('dataService', function($http) {
-    // delete $http.defaults.headers.common['X-Requested-With'];
-    this.getData = function(n1, n2, operation) {
-        console.log("GET "+n1+", "+n2+ ", "+operation)
-        $http({
-            method: 'GET',
-            url: '/calculator/'+operation,
-            params: 'a='+n1+' b='+n2
-        }).success(function(data){
-            console.log("DATA : "+data)
-            return data
-        }).error(function(){
-            alert("error");
-        });
-    }
-});
-
-calculatorApp.controller('AngularJSCtrl', function($scope, dataService) {
-    $scope.data = dataService.getData();
-});
-
 const calculate = (n1, operator, n2) => {
     const firstNum = parseFloat(n1)
     const secondNum = parseFloat(n2)
-    if (operator === 'add') return add(firstNum, secondNum)
-    if (operator === 'subtract') return firstNum - secondNum
-    if (operator === 'multiply') return firstNum * secondNum
-    if (operator === 'divide') return firstNum / secondNum
+    if (operator === 'add') return operation(firstNum, secondNum, 'add')
+    if (operator === 'subtract') return operation(firstNum, secondNum, 'subtract')
+    if (operator === 'multiply') return operation(firstNum, secondNum, 'multiply')
+    if (operator === 'divide') return operation(firstNum, secondNum, 'divide')
 }
 
 var result = -1
 
-const add = (n1, n2) => {
-    console.log("ADD "+n1+" and "+n2)
+const operation = (n1, n2, operation) => {
+    console.log(operation+" for "+n1+" and "+n2)
     // console.log("calculatorApp "+calculatorApp)
 
     request = new XMLHttpRequest();
-    request.open('GET', '/calculator/add?a='+n1+'&b='+n2, false);  // `false` makes the request synchronous
+    request.open('GET', '/calculator/'+operation+'?a='+n1+'&b='+n2, false);  // `false` makes the request synchronous
     request.send(null);
 
     if (request.status === 200) {
@@ -52,6 +28,29 @@ const add = (n1, n2) => {
     return result
 }
 
+// const add = (n1, n2) => {
+//     console.log("ADD "+n1+" and "+n2)
+//     // // console.log("calculatorApp "+calculatorApp)
+//     //
+//     // request = new XMLHttpRequest();
+//     // request.open('GET', '/calculator/add?a='+n1+'&b='+n2, false);  // `false` makes the request synchronous
+//     // request.send(null);
+//     //
+//     // if (request.status === 200) {
+//     //     console.log(request.responseText);
+//     //     obj = JSON.parse(request.responseText);
+//     //     console.log(obj);
+//     //     console.log(obj.result);
+//     //     result = obj.result
+//     // }
+//     //
+//     return operation(n1,n2,'add')
+// }
+//
+// const subtract = (n1, n2) => {
+//     return operation(n1,n2,'subtract')
+// }
+//
 
 
 const getKeyType = key => {
@@ -68,14 +67,19 @@ const getKeyType = key => {
 }
 
 const createResultString = (key, displayedNum, state) => {
+    console.log("key "+key)
     const keyContent = key.textContent
+    console.log("keyContent "+keyContent)
     const keyType = getKeyType(key)
+    console.log("keyType "+keyType)
     const {
         firstValue,
         operator,
         modValue,
         previousKeyType
     } = state
+
+    console.log("  - X1")
 
     if (keyType === 'number') {
         return displayedNum === '0' ||
@@ -85,11 +89,15 @@ const createResultString = (key, displayedNum, state) => {
             : displayedNum + keyContent
     }
 
+    console.log("  - X2")
+
     if (keyType === 'decimal') {
         if (!displayedNum.includes('.')) return displayedNum + '.'
         if (previousKeyType === 'operator' || previousKeyType === 'calculate') return '0.'
         return displayedNum
     }
+
+    console.log("  - X3")
 
     if (keyType === 'operator') {
         return firstValue &&
@@ -100,7 +108,11 @@ const createResultString = (key, displayedNum, state) => {
             : displayedNum
     }
 
+    console.log("  - X4")
+
     if (keyType === 'clear') return 0
+
+    console.log("  - X5")
 
     if (keyType === 'calculate') {
         return firstValue
@@ -109,7 +121,36 @@ const createResultString = (key, displayedNum, state) => {
                 : calculate(firstValue, operator, displayedNum)
             : displayedNum
     }
+
+    console.log("  - X9")
+
+    if (keyType === 'history') {
+        console.log("HISTORY.....")
+        getHistory()
+        console.log("HISTORY GOT !")
+        return displayedNum
+    }
 }
+
+
+const getHistory = () => {
+    console.log("getting HISTORY.....")
+    request = new XMLHttpRequest();
+    request.open('GET', '/calculator/history', false);  // `false` makes the request synchronous
+    request.send(null);
+
+    if (request.status === 200) {
+        console.log(request.responseText);
+        obj = JSON.parse(request.responseText);
+        console.log(obj);
+        result = obj
+    }
+
+    history.textContent = result
+    return result
+}
+
+
 
 const updateCalculatorState = (key, calculator, calculatedValue, displayedNum) => {
     const keyType = getKeyType(key)
@@ -161,6 +202,7 @@ const updateVisualState = (key, calculator) => {
 const calculator = document.querySelector('.calculator')
 const display = calculator.querySelector('.calculator__display')
 const keys = calculator.querySelector('.calculator__keys')
+const history = calculator.querySelector('.calculator__history')
 
 keys.addEventListener('click', e => {
     if (!e.target.matches('button')) return

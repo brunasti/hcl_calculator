@@ -7,11 +7,13 @@
         <script src="//code.angularjs.org/snapshot/angular.min.js"></script>
     </head>
     <body >
+        <div class="container">
+            <div>
+                <h3>Simple Calculator</h3>
 
-    <div class="container">
-        <h3>Simple Calculator</h3>
+            </div>
 
-            <div class="calculator" ng-app="calculatorApp" ng-controller="calcCtrl">
+            <div class="calculator">
                 <div class="calculator__display">0</div>
 
                 <div class="calculator__keys">
@@ -29,90 +31,22 @@
                     <button>2</button>
                     <button>3</button>
                     <button>0</button>
-                    <button data-action="decimal">.</button>
+<!--                        <button data-action="decimal">.</button>-->
+                    <button data-action="history">HIST</button>
                     <button data-action="clear">AC</button>
                     <button class="key--equal" data-action="calculate">=</button>
                 </div>
+                <div class="calculator__history"></div>
             </div>
-            <h6>Paolo Brunasti - 2021</h6>
+            <div>
+
+            </div>
+            <div>
+                <h6>Paolo Brunasti - 2021</h6>
+            </div>
 
         </div>
         <!-- partial -->
         <script  src="./calculator.js"></script>
-
-<!--        <div class="container">-->
-<!--            <h1>Simple Calculator</h1>-->
-<!--            <div >-->
-<!--                <table>-->
-<!--                    <tr>-->
-<!--                        <td>SUM</td>-->
-<!--                        <td>SUBTRACT</td>-->
-<!--                    </tr>-->
-<!--                    <tr>-->
-<!--                        <td>-->
-<!--                            <form id="addExample" action="/calculator/add">-->
-<!--                                <label>Param A: <input name="a" id="a" type="number" /></label><br/>-->
-<!--                                Operation: add +-->
-<!--&lt;!&ndash;                                <select name="oper" id="oper" >&ndash;&gt;-->
-<!--&lt;!&ndash;                                    <option value="add">+</option>&ndash;&gt;-->
-<!--&lt;!&ndash;                                    <option value="subtract">-</option>&ndash;&gt;-->
-<!--&lt;!&ndash;                                    <option value="multiply">*</option>&ndash;&gt;-->
-<!--&lt;!&ndash;                                    <option value="divide">/</option>&ndash;&gt;-->
-<!--&lt;!&ndash;                                </select>&ndash;&gt;-->
-<!--                                <br />-->
-<!--                                <label>Param A: <input name="b" id="b" type="number" /></label><br />-->
-<!--                                <input type="submit" value="ADD" />-->
-<!--                            </form>-->
-<!--                        </td>-->
-<!--                        <td>-->
-<!--                            <form id="subtractExample" action="/calculator/subtract">-->
-<!--                                <label>Param A: <input name="a" id="a" type="number" /></label><br/>-->
-<!--                                Operation:  subtract - -->
-<!--                                <br />-->
-<!--                                <label>Param A: <input name="b" id="b" type="number" /></label><br />-->
-<!--                                <input type="submit" value="SUBTRACT" />-->
-<!--                            </form>-->
-
-<!--                        </td>-->
-<!--                    </tr>-->
-<!--                    <tr><td height="10"></td></tr>-->
-<!--                    <tr>-->
-<!--                        <td>MULTIPLY</td>-->
-<!--                        <td>DIVIDE</td>-->
-<!--                    </tr>-->
-<!--                    <tr>-->
-<!--                        <td>-->
-<!--                            <form id="multiplyExample" action="/calculator/multiply">-->
-<!--                                <label>Param A: <input name="a" id="a" type="number" /></label><br/>-->
-<!--                                Operation:  multiply *-->
-<!--                                <br />-->
-<!--                                <label>Param A: <input name="b" id="b" type="number" /></label><br />-->
-<!--                                <input type="submit" value="MULTIPLY" />-->
-<!--                            </form>-->
-
-<!--                        </td>-->
-<!--                        <td>-->
-<!--                            <form id="divideExample" action="/calculator/divide">-->
-<!--                                <label>Param A: <input name="a" id="a" type="number" /></label><br/>-->
-<!--                                Operation:  divide /-->
-<!--                                <br />-->
-<!--                                <label>Param A: <input name="b" id="b" type="number" /></label><br />-->
-<!--                                <input type="submit" value="DIVIDE" />-->
-<!--                            </form>-->
-
-<!--                        </td>-->
-<!--                    </tr>-->
-<!--                    <tr><td height="10"></td></tr>-->
-<!--                    <tr>-->
-<!--                        <td>-->
-<!--                            <form id="historyExample" action="/calculator/history">-->
-<!--                                <input type="submit" value="HISTORY" />-->
-<!--                            </form>-->
-<!--                        </td>-->
-<!--                    </tr>-->
-<!--                </table>-->
-<!--            </div>-->
-<!--        </div>-->
-
     </body>
 </html>

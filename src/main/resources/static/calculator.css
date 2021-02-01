@@ -144,6 +144,14 @@ body {
     text-align: right;
 }
 
+.calculator__history {
+    background-color: #cccccc;
+    color: #222;
+    font-size: 1.1em;
+    padding: 0.5em 0.75em;
+    text-align: left;
+}
+
 .calculator__keys {
     background-color: #999;
     display: grid;
