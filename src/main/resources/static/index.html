@@ -4,7 +4,6 @@
         <meta charset="UTF-8">
         <title>Simple Calculator</title>
         <link rel="stylesheet" href="calculator.css">
-        <script src="//code.angularjs.org/snapshot/angular.min.js"></script>
     </head>
     <body >
         <div class="container">
@@ -35,17 +34,16 @@
                     <button data-action="clear">AC</button>
                     <button class="key--equal" data-action="calculate">=</button>
                 </div>
-                <div class="calculator__history"></div>
+                <textarea rows="4" cols="36" class="calculator__history"></textarea>
             </div>
             <div>
 
             </div>
-            <div>
-                <h6>Paolo Brunasti - 2021</h6>
+            <div align="right">
+                <i><font size="-1">Paolo Brunasti - 2021</font> </i>
             </div>
 
         </div>
-        <!-- partial -->
         <script  src="./calculator.js"></script>
     </body>
 </html>

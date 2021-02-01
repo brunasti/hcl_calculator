@@ -10,18 +10,12 @@ const calculate = (n1, operator, n2) => {
 var result = -1
 
 const operation = (n1, n2, operation) => {
-    console.log(operation+" for "+n1+" and "+n2)
-    // console.log("calculatorApp "+calculatorApp)
-
     request = new XMLHttpRequest();
     request.open('GET', '/calculator/'+operation+'?a='+n1+'&b='+n2, false);  // `false` makes the request synchronous
     request.send(null);
 
     if (request.status === 200) {
-        console.log(request.responseText);
         obj = JSON.parse(request.responseText);
-        console.log(obj);
-        console.log(obj.result);
         result = obj.result
     }
 
@@ -92,16 +86,18 @@ const createResultString = (key, displayedNum, state) => {
 
 
 const getHistory = () => {
-    console.log("getting HISTORY.....")
     request = new XMLHttpRequest();
     request.open('GET', '/calculator/history', false);  // `false` makes the request synchronous
     request.send(null);
 
     if (request.status === 200) {
-        console.log(request.responseText);
         obj = JSON.parse(request.responseText);
-        console.log(obj);
-        result = obj
+        result = "";
+        for (i=0; i<obj.length; i++) {
+            oper = obj[i];
+            result = oper.operationType + " : "+oper.paramA+" and "+oper.paramB+" = "+oper.result + "\n"+result;
+        }
+        result = "History:\n"+result;
     }
 
     history.textContent = result

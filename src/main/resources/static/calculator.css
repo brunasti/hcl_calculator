@@ -128,7 +128,7 @@ body {
 
 .calculator {
     border-radius: 12px;
-    box-shadow: 0 0 40px 0px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0 40px 0 rgba(0, 0, 0, 0.15);
     margin-left: auto;
     margin-right: auto;
     margin-top: 2em;
@@ -147,7 +147,7 @@ body {
 .calculator__history {
     background-color: #cccccc;
     color: #222;
-    font-size: 1.1em;
+    font-size: 0.6em;
     padding: 0.5em 0.75em;
     text-align: left;
 }
